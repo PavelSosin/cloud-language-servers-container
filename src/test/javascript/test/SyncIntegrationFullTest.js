@@ -128,7 +128,6 @@ describe('Sync Integration Full loop Test', function () {
     }
     
 	before(function(){
-	    this.timeout(1000);
 
 		return new Promise(function(ready, startfailed){
 			startLSP().then(function st(){
@@ -298,7 +297,7 @@ describe('Sync Integration Full loop Test', function () {
 		        	// Clear subscriber and resolve
 		        	aSubscribers.pop();
 		        	resolve();
-		        },1000);
+		        },10000);
 
 		        aSubscribers.push({ method: "workspace/didChangeWatchedFiles", callback: function(oLspMsg){
 		        	console.log("Test create - loopback received:\n" + JSON.stringify(oLspMsg));

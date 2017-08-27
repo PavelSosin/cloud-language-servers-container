@@ -9,7 +9,7 @@ const rp = require('request-promise');
 
 var aSubscribers = [];
 
-describe('WebIDE reload test', () => {
+describe('WebIDE reload test', function () {
 
 	function onMessage(msg) {
 		console.log("Receiving message: " + msg);
@@ -64,7 +64,7 @@ describe('WebIDE reload test', () => {
 		    }).catch(function(err){
 			    reject(err);
 		    });
-		}),1000).then(function(ws) {
+		}),10000).then(function(ws) {
 			return new Promise(function(closeRes,closeRej) {
 				ws.close();
 				ws.on('close',function close() {
@@ -85,7 +85,6 @@ describe('WebIDE reload test', () => {
 	});
 
 	it('Check for Reload WebIDE', function() {
-		this.timeout(1000);
 		return openAndClose().then(function(bOpen1){
 			console.log("1st time open & close " + bOpen1);
 			expect(bOpen1).to.be.true;

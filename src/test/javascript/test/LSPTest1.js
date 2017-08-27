@@ -10,8 +10,7 @@ var ws;
 var openPromise;
 var aSubscribers = [];
 
-describe('Protocol test (LSP is socket client)', () => {
-
+describe('Protocol test (LSP is socket client)', function () {
 
     function onMessage(msg) {
 	    console.log("Receiving message: " + msg);
@@ -73,7 +72,7 @@ before(function(){
 	    }).catch(function(err){
 		    reject(err);
 	    });
-    }),1000);
+    }),10000);
 });
 
 
@@ -84,13 +83,12 @@ after(function(){
                 ws.close();
             }
             resolve();
-        }), 1000
+        }), 10000
 
     );
 });
 
 it('Check for open', function() {
-    this.timeout(2000);
     return openPromise.then(function(isOpened){
         expect(isOpened).to.be.true;
     });
@@ -99,7 +97,6 @@ it('Check for open', function() {
 
 it('Check for Mirror',function(){
 	console.log("TEST - Check for Mirror");
-    this.timeout(2000);
     var testMessage = "Content-Length: 113\r\n\r\n" +
         "{\r\n" +
         "\"jsonrpc\": \"2.0\",\r\n" +
